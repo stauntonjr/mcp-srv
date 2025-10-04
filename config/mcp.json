@@ -87,6 +87,20 @@
         "-y",
         "@modelcontextprotocol/server-puppeteer"
       ]
+    },
+    "playwright": {
+      "type": "stdio",
+      "disabled": false,
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest",
+        "--headless",
+        "--no-sandbox",
+        "--isolated",
+        "--executable-path",
+        "/root/.cache/ms-playwright/chromium-1187/chrome-linux/chrome"
+      ]
     }
   }
 }
