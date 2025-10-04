@@ -23,8 +23,16 @@ services:
   mcp:
     image: ghcr.io/1mcp-app/agent:latest
     container_name: 1mcp
+    env_file:
+      - /mcp-srv/.env
     environment:
       - ONE_MCP_HOST=0.0.0.0
+      - GITHUB_PERSONAL_ACCESS_TOKEN=${GITHUB_PERSONAL_ACCESS_TOKEN}
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - GH_TOKEN=${GH_TOKEN}
+      - GITHUB_PERSONAL_ACCESS_TOKEN=${GITHUB_PERSONAL_ACCESS_TOKEN}
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - GH_TOKEN=${GH_TOKEN}
     volumes:
       - /opt/1mcp/config:/config
     command: ["node", "index.js", "--config-dir", "/config", "--host", "0.0.0.0", "--port", "3050", "--transport", "http", "--external-url", "https://10.0.0.193", "--trust-proxy", "172.18.0.0/16"]
