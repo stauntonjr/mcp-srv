@@ -78,6 +78,15 @@
       "args": [
         "mcp-pandoc"
       ]
+    },
+    "puppeteer": {
+      "type": "stdio",
+      "disabled": false,
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-puppeteer"
+      ]
     }
   }
 }
