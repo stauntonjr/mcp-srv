@@ -43,6 +43,15 @@
         "-y",
         "@modelcontextprotocol/server-sequential-thinking"
       ]
+    },
+    "fetch": {
+      "type": "stdio",
+      "disabled": false,
+      "command": "npx",
+      "args": [
+        "-y",
+        "@kazuph/mcp-fetch"
+      ]
     }
   }
 }
