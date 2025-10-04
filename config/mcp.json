@@ -56,10 +56,10 @@
     "memory": {
       "type": "stdio",
       "disabled": false,
-      "command": "npx",
+      "command": "bash",
       "args": [
-        "-y",
-        "@modelcontextprotocol/server-memory"
+        "-lc",
+        "MEMORY_HOME=/stores/default npx -y @modelcontextprotocol/server-memory"
       ]
     }
   }
