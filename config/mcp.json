@@ -14,17 +14,9 @@
         "@modelcontextprotocol/server-github"
       ],
       "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
+        "GITHUB_TOKEN": "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",
+        "GH_TOKEN": "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"
       }
-    },
-    "tavily-remote": {
-      "type": "stdio",
-      "disabled": false,
-      "command": "bash",
-      "args": [
-        "-lc",
-        "npx -y mcp-remote https://mcp.tavily.com/mcp/?tavilyApiKey="
-      ]
     },
     "context7": {
       "type": "stdio",
@@ -100,6 +92,15 @@
         "--isolated",
         "--executable-path",
         "/root/.cache/ms-playwright/chromium-1187/chrome-linux/chrome"
+      ]
+    },
+    "tavily-remote": {
+      "type": "stdio",
+      "disabled": false,
+      "command": "bash",
+      "args": [
+        "-lc",
+        "npx -y mcp-remote https://mcp.tavily.com/mcp/?tavilyApiKey="
       ]
     }
   }
