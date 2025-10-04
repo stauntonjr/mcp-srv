@@ -70,6 +70,14 @@
         "-y",
         "@antv/mcp-server-chart"
       ]
+    },
+    "pandoc": {
+      "type": "stdio",
+      "disabled": false,
+      "command": "uvx",
+      "args": [
+        "mcp-pandoc"
+      ]
     }
   }
 }
