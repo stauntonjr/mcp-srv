@@ -9,10 +9,22 @@
       "type": "stdio",
       "disabled": false,
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
       "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "\u0024{GITHUB_PERSONAL_ACCESS_TOKEN}"
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
       }
+    },
+    "tavily-remote": {
+      "type": "stdio",
+      "disabled": false,
+      "command": "bash",
+      "args": [
+        "-lc",
+        "npx -y mcp-remote https://mcp.tavily.com/mcp/?tavilyApiKey="
+      ]
     }
   }
 }
