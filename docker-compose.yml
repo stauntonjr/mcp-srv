@@ -24,7 +24,7 @@ services:
     environment:
       - ONE_MCP_HOST=0.0.0.0
     volumes:
-      - /opt/1mcp/config/mcp.json:/config.json:ro
+      - /opt/1mcp/config:/config
     command: ["node", "index.js", "--config", "/config.json", "--host", "0.0.0.0", "--port", "3050", "--transport", "http", "--external-url", "https://10.0.0.193", "--trust-proxy", "172.18.0.0/16"]
     labels:
       - "traefik.enable=true"
