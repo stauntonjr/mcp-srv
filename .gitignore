@@ -1,0 +1,15 @@
+# env and secrets
+.env
+*.key
+*.srl
+dynamic/*.key
+dynamic/*.crt
+dynamic/san.cnf
+
+# Node/npm caches
+node_modules/
+npm-debug.log*
+
+# Editor
+.vscode/
+.DS_Store

@@ -1,0 +1,43 @@
+services:
+  traefik:
+    image: traefik:v2.11
+    container_name: traefik
+    command:
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --entrypoints.web.address=:80
+      - --entrypoints.websecure.address=:443
+      - --providers.file.filename=/etc/traefik/dynamic/traefik.yml
+      - --api.dashboard=false
+      - --providers.docker.network=web
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /opt/1mcp/dynamic:/etc/traefik/dynamic:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    restart: unless-stopped
+
+  mcp:
+    image: ghcr.io/1mcp-app/agent:latest
+    container_name: 1mcp
+    environment:
+      - ONE_MCP_HOST=0.0.0.0
+    volumes:
+      - /opt/1mcp/config/mcp.json:/config.json:ro
+    command: ["node", "index.js", "--config", "/config.json", "--host", "0.0.0.0", "--port", "3050", "--transport", "http", "--external-url", "https://10.0.0.193", "--trust-proxy", "172.18.0.0/16"]
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web"
+      - "traefik.http.routers.mcp.rule=PathPrefix(`/`)"
+      - "traefik.http.routers.mcp.entrypoints=websecure"
+      - "traefik.http.routers.mcp.tls=true"
+      - "traefik.http.services.mcp.loadbalancer.server.port=3050"
+      - "traefik.http.routers.mcp-web.rule=PathPrefix()"
+      - "traefik.http.routers.mcp-web.entrypoints=web"
+    restart: unless-stopped
+
+networks:
+  default:
+    name: web
+    driver: bridge

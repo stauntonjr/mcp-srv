@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "microsoft-learn": {
+      "type": "http",
+      "disabled": false,
+      "url": "https://learn.microsoft.com/api/mcp"
+    },
+    "github": {
+      "type": "stdio",
+      "disabled": false,
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "\u0024{GITHUB_PERSONAL_ACCESS_TOKEN}"
+      }
+    }
+  }
+}
