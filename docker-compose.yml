@@ -6,6 +6,8 @@ services:
       - --providers.docker=true
       - --providers.docker.exposedbydefault=false
       - --entrypoints.web.address=:80
+      - --entrypoints.web.http.redirections.entrypoint.to=websecure
+      - --entrypoints.web.http.redirections.entrypoint.scheme=https
       - --entrypoints.websecure.address=:443
       - --providers.file.filename=/etc/traefik/dynamic/traefik.yml
       - --api.dashboard=false
@@ -25,7 +27,7 @@ services:
       - ONE_MCP_HOST=0.0.0.0
     volumes:
       - /opt/1mcp/config:/config
-    command: ["node", "index.js", "--config", "/config.json", "--host", "0.0.0.0", "--port", "3050", "--transport", "http", "--external-url", "https://10.0.0.193", "--trust-proxy", "172.18.0.0/16"]
+    command: ["node", "index.js", "--config-dir", "/config", "--host", "0.0.0.0", "--port", "3050", "--transport", "http", "--external-url", "https://10.0.0.193", "--trust-proxy", "172.18.0.0/16"]
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=web"
