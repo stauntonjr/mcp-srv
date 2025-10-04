@@ -61,6 +61,15 @@
         "-lc",
         "MEMORY_HOME=/stores/default npx -y @modelcontextprotocol/server-memory"
       ]
+    },
+    "chart": {
+      "type": "stdio",
+      "disabled": false,
+      "command": "npx",
+      "args": [
+        "-y",
+        "@antv/mcp-server-chart"
+      ]
     }
   }
 }
