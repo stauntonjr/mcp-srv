@@ -13,3 +13,7 @@ npm-debug.log*
 # Editor
 .vscode/
 .DS_Store
+# runtime only
+config/mcp.json
+secrets/.env.dec
+secrets/.env.plain
