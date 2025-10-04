@@ -52,6 +52,15 @@
         "-y",
         "@kazuph/mcp-fetch"
       ]
+    },
+    "memory": {
+      "type": "stdio",
+      "disabled": false,
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ]
     }
   }
 }
