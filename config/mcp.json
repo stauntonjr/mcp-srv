@@ -25,6 +25,15 @@
         "-lc",
         "npx -y mcp-remote https://mcp.tavily.com/mcp/?tavilyApiKey="
       ]
+    },
+    "context7": {
+      "type": "stdio",
+      "disabled": false,
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp"
+      ]
     }
   }
 }
