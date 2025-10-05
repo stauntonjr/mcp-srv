@@ -54,7 +54,7 @@
       ],
       "env": {
         "MEMORY_HOME": "/stores/default",
-        "MEMORY_FILE_PATH": "/stores/default/memory.json"
+        "MEMORY_FILE_PATH": "/stores/default/memory.jsonl"
       }
     },
     "chart": {
