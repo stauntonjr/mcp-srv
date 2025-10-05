@@ -29,9 +29,6 @@ services:
       - GITHUB_PERSONAL_ACCESS_TOKEN=${GITHUB_PERSONAL_ACCESS_TOKEN}
       - GITHUB_TOKEN=${GITHUB_TOKEN}
       - GH_TOKEN=${GH_TOKEN}
-      - GITHUB_PERSONAL_ACCESS_TOKEN=${GITHUB_PERSONAL_ACCESS_TOKEN}
-      - GITHUB_TOKEN=${GITHUB_TOKEN}
-      - GH_TOKEN=${GH_TOKEN}
     volumes:
       - ./config:/config
       - ./memory:/stores
