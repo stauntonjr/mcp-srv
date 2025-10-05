@@ -6,6 +6,9 @@ dynamic/*.key
 dynamic/*.crt
 dynamic/san.cnf
 
+# Persisted MCP memory store
+memory/
+
 # Node/npm caches
 node_modules/
 npm-debug.log*
@@ -18,3 +21,7 @@ config/mcp.json
 secrets/.env.dec
 secrets/.env.plain
 !secrets/.env
+
+# Backups
+*.backup
+*.bak
