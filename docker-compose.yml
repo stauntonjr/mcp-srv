@@ -6,16 +6,17 @@ services:
       - --providers.docker=true
       - --providers.docker.exposedbydefault=false
       - --entrypoints.web.address=:80
-      - --entrypoints.web.http.redirections.entrypoint.to=websecure
-      - --entrypoints.web.http.redirections.entrypoint.scheme=https
       - --entrypoints.websecure.address=:443
       - --providers.file.filename=/etc/traefik/dynamic/traefik.yml
       - --api.dashboard=false
+      - --accesslog=true
+      - --log.level=INFO
     ports:
       - "80:80"
       - "443:443"
     volumes:
-      - ./dynamic:/etc/traefik/dynamic:ro
+      - ./traefik/traefik.yml:/etc/traefik/dynamic/traefik.yml:ro
+      - /root/dotfiles/ssl:/certs:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
     restart: unless-stopped
 
@@ -32,13 +33,7 @@ services:
     volumes:
       - ./config:/config
       - ./memory:/stores
-    command: ["node", "index.js", "--config-dir", "/config", "--host", "0.0.0.0", "--port", "3050", "--transport", "http", "--external-url", "https://10.0.0.193", "--trust-proxy", "172.18.0.0/16"]
+    command: ["node", "index.js", "--config-dir", "/config", "--host", "0.0.0.0", "--port", "3050", "--transport", "http", "--external-url", "https://mcp.ediacarian.home", "--trust-proxy", "172.18.0.0/16"]
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.mcp.rule=PathPrefix(`/`)"
-      - "traefik.http.routers.mcp.entrypoints=websecure"
-      - "traefik.http.routers.mcp.tls=true"
-      - "traefik.http.services.mcp.loadbalancer.server.port=3050"
-      - "traefik.http.routers.mcp-web.rule=PathPrefix()"
-      - "traefik.http.routers.mcp-web.entrypoints=web"
     restart: unless-stopped

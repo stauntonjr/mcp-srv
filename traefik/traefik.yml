@@ -1,0 +1,40 @@
+## serversTransports temporarily removed for troubleshooting /oauth 404
+tls:
+  certificates:
+    - certFile: /certs/wildcard.ediacarian.home.crt
+      keyFile: /certs/wildcard.ediacarian.home.key
+  stores:
+    default:
+      defaultCertificate:
+        certFile: /certs/wildcard.ediacarian.home.crt
+        keyFile: /certs/wildcard.ediacarian.home.key
+
+http:
+  routers:
+    mcp-https:
+      entryPoints:
+        - websecure
+      rule: Host(`mcp.ediacarian.home`)
+      service: mcp
+      tls: {}
+      priority: 100
+    redirect-to-https:
+      entryPoints:
+        - web
+      rule: PathPrefix(`/`)
+      middlewares:
+        - redirect-https
+      service: noop
+  middlewares:
+    redirect-https:
+      redirectScheme:
+        scheme: https
+  services:
+    noop:
+      loadBalancer:
+        servers:
+          - url: http://127.0.0.1
+    mcp:
+      loadBalancer:
+        servers:
+          - url: http://1mcp:3050
