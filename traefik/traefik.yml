@@ -37,4 +37,4 @@ http:
     mcp:
       loadBalancer:
         servers:
-          - url: http://1mcp:3050
+          - url: http://localhost:3050

@@ -5,7 +5,14 @@
       "disabled": false,
       "url": "https://learn.microsoft.com/api/mcp"
     },
-    "github": {
+    "github": {      
+      "env": {
+        "PYTHONUNBUFFERED": "1",
+        "FS_DNS_HOST": "10.0.0.152",
+        "FS_DNS_USER": "root",
+        "FS_DNS_KEY_PATH": "/root/dotfiles/ssh/id_ed25519",
+        "FS_DNS_ALLOWED_DIRS": "/root/"
+      },
       "type": "stdio",
       "disabled": false,
       "command": "npx",
@@ -120,6 +127,127 @@
       ],
       "env": {
         "TAVILY_API_KEY": "${TAVILY_API_KEY}"
+      }
+    }
+    ,
+    "filesystem-sshfs-proxmox": {
+      "type": "stdio",
+      "disabled": false,
+      "command": "python",
+      "args": [
+        "-m",
+        "mcp_filesystem_sshfs",
+        "--host",
+        "${FS_PROXMOX_HOST}",
+        "--username",
+        "${FS_PROXMOX_USER}",
+        "--key-path",
+        "${FS_PROXMOX_KEY_PATH}",
+        "--allowed-dirs",
+        "${FS_PROXMOX_ALLOWED_DIRS}"
+      ],
+      "env": {
+        "PYTHONUNBUFFERED": "1",
+        "FS_PROXMOX_HOST": "10.0.0.250",
+        "FS_PROXMOX_USER": "root",
+        "FS_PROXMOX_KEY_PATH": "/root/dotfiles/ssh/id_ed25519",
+        "FS_PROXMOX_ALLOWED_DIRS": "/root/"
+      }
+    },
+    "filesystem-sshfs-dns-srv": {
+      "type": "stdio",
+      "disabled": false,
+      "command": "python",
+      "args": [
+        "-m",
+        "mcp_filesystem_sshfs",
+        "--host",
+        "${FS_DNS_HOST}",
+        "--username",
+        "${FS_DNS_USER}",
+        "--key-path",
+        "${FS_DNS_KEY_PATH}",
+        "--allowed-dirs",
+        "${FS_DNS_ALLOWED_DIRS}"
+      ],
+      "env": {
+        "PYTHONUNBUFFERED": "1",
+        "FS_DNS_HOST": "10.0.0.152",
+        "FS_DNS_USER": "root",
+        "FS_DNS_KEY_PATH": "/root/dotfiles/ssh/id_ed25519",
+        "FS_DNS_ALLOWED_DIRS": "/root/"
+      }
+    },
+    "filesystem-sshfs-vpn-srv": {
+      "type": "stdio",
+      "disabled": false,
+      "command": "python",
+      "args": [
+        "-m",
+        "mcp_filesystem_sshfs",
+        "--host",
+        "${FS_VPN_HOST}",
+        "--username",
+        "${FS_VPN_USER}",
+        "--key-path",
+        "${FS_VPN_KEY_PATH}",
+        "--allowed-dirs",
+        "${FS_VPN_ALLOWED_DIRS}"
+      ],
+      "env": {
+        "PYTHONUNBUFFERED": "1",
+        "FS_VPN_HOST": "10.0.0.7",
+        "FS_VPN_USER": "root",
+        "FS_VPN_KEY_PATH": "/root/dotfiles/ssh/id_ed25519",
+        "FS_VPN_ALLOWED_DIRS": "/root/"
+      }
+    },
+    "filesystem-sshfs-oidc-srv": {
+      "type": "stdio",
+      "disabled": false,
+      "command": "python",
+      "args": [
+        "-m",
+        "mcp_filesystem_sshfs",
+        "--host",
+        "${FS_OIDC_HOST}",
+        "--username",
+        "${FS_OIDC_USER}",
+        "--key-path",
+        "${FS_OIDC_KEY_PATH}",
+        "--allowed-dirs",
+        "${FS_OIDC_ALLOWED_DIRS}"
+      ],
+      "env": {
+        "PYTHONUNBUFFERED": "1",
+        "FS_OIDC_HOST": "10.0.0.226",
+        "FS_OIDC_USER": "root",
+        "FS_OIDC_KEY_PATH": "/root/dotfiles/ssh/id_ed25519",
+        "FS_OIDC_ALLOWED_DIRS": "/root/"
+      }
+    },
+    "filesystem-sshfs-mcp-srv": {
+      "type": "stdio",
+      "disabled": true,
+      "command": "python",
+      "args": [
+        "-m",
+        "mcp_filesystem_sshfs",
+        "--host",
+        "${FS_MCP_HOST}",
+        "--username",
+        "${FS_MCP_USER}",
+        "--key-path",
+        "${FS_MCP_KEY_PATH}",
+        "--allowed-dirs",
+        "${FS_MCP_ALLOWED_DIRS}"
+      ],
+      "env": {
+        "PYTHONUNBUFFERED": "1",
+        "FS_MCP_HOST": "10.0.0.193",
+        "FS_MCP_USER": "root",
+        "FS_MCP_KEY_PATH": "/root/dotfiles/ssh/id_ed25519",
+        "FS_MCP_ALLOWED_DIRS": "/root"
       }
     }
   }

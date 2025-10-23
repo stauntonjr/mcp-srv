@@ -2,27 +2,27 @@ services:
   traefik:
     image: traefik:v2.11
     container_name: traefik
+    network_mode: host
     command:
-      - --providers.docker=true
-      - --providers.docker.exposedbydefault=false
+      - --providers.docker=false
+      - --providers.file.filename=/etc/traefik/dynamic/traefik.yml
       - --entrypoints.web.address=:80
       - --entrypoints.websecure.address=:443
-      - --providers.file.filename=/etc/traefik/dynamic/traefik.yml
       - --api.dashboard=false
       - --accesslog=true
       - --log.level=INFO
-    ports:
-      - "80:80"
-      - "443:443"
     volumes:
       - ./traefik/traefik.yml:/etc/traefik/dynamic/traefik.yml:ro
       - /root/dotfiles/ssl:/certs:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
     restart: unless-stopped
 
   mcp:
-    image: ghcr.io/1mcp-app/agent:latest
+    build:
+      context: ..
+      dockerfile: mcp-srv/Dockerfile
+    image: local/1mcp:py
     container_name: 1mcp
+    network_mode: host
     env_file:
       - ./.env
     environment:
@@ -30,10 +30,32 @@ services:
       - GITHUB_PERSONAL_ACCESS_TOKEN=${GITHUB_PERSONAL_ACCESS_TOKEN}
       - GITHUB_TOKEN=${GITHUB_TOKEN}
       - GH_TOKEN=${GH_TOKEN}
+      - FS_PROXMOX_HOST=10.0.0.250
+      - FS_PROXMOX_USER=root
+      - FS_PROXMOX_KEY_PATH=/ssh/id_ed25519
+      - FS_PROXMOX_ALLOWED_DIRS=/root/
+      - FS_DNS_HOST=10.0.0.152
+      - FS_DNS_USER=root
+      - FS_DNS_KEY_PATH=/ssh/id_ed25519
+      - FS_DNS_ALLOWED_DIRS=/root/
+      - FS_VPN_HOST=10.0.0.7
+      - FS_VPN_USER=root
+      - FS_VPN_KEY_PATH=/ssh/id_ed25519
+      - FS_VPN_ALLOWED_DIRS=/root/
+      - FS_OIDC_HOST=10.0.0.226
+      - FS_OIDC_USER=root
+      - FS_OIDC_KEY_PATH=/ssh/id_ed25519
+      - FS_OIDC_ALLOWED_DIRS=/root/
+      - FS_MCP_HOST=mcp.ediacarian.home
+      - FS_MCP_USER=root
+      - FS_MCP_KEY_PATH=/ssh/id_ed25519
+      - FS_MCP_ALLOWED_DIRS=/root/
     volumes:
       - ./config:/config
       - ./memory:/stores
+      - /root/dotfiles/ssh:/ssh:ro
     command: ["node", "index.js", "--config-dir", "/config", "--host", "0.0.0.0", "--port", "3050", "--transport", "http", "--external-url", "https://mcp.ediacarian.home", "--trust-proxy", "172.18.0.0/16"]
     labels:
       - "traefik.enable=true"
     restart: unless-stopped
+
