@@ -154,6 +154,36 @@
         "FS_PROXMOX_ALLOWED_DIRS": "/root/"
       }
     },
+    "chat-history-sshfs-proxmox": {
+      "type": "stdio",
+      "disabled": false,
+      "command": "python",
+      "args": [
+        "-m",
+        "mcp_filesystem_sshfs.chat_history",
+        "--host",
+        "${FS_PROXMOX_HOST}",
+        "--username",
+        "${FS_PROXMOX_USER}",
+        "--key-path",
+        "${FS_PROXMOX_KEY_PATH}",
+        "--profile-storage-path",
+        "${CHAT_PROXMOX_PROFILE_STORAGE_PATH}",
+        "--workspace-storage-root",
+        "${CHAT_PROXMOX_WORKSPACE_STORAGE_ROOT}",
+        "--allowed-dirs",
+        "${CHAT_PROXMOX_ALLOWED_DIRS}"
+      ],
+      "env": {
+        "PYTHONUNBUFFERED": "1",
+        "FS_PROXMOX_HOST": "10.0.0.250",
+        "FS_PROXMOX_USER": "root",
+        "FS_PROXMOX_KEY_PATH": "/root/dotfiles/ssh/id_ed25519",
+        "CHAT_PROXMOX_PROFILE_STORAGE_PATH": "/root/.vscode-server/data/User/globalStorage",
+        "CHAT_PROXMOX_WORKSPACE_STORAGE_ROOT": "/root/.vscode-server/data/User/workspaceStorage",
+        "CHAT_PROXMOX_ALLOWED_DIRS": "/root/.vscode-server/data/User/globalStorage,/root/.vscode-server/data/User/workspaceStorage"
+      }
+    },
     "filesystem-sshfs-dns-srv": {
       "type": "stdio",
       "disabled": false,
@@ -178,6 +208,36 @@
         "FS_DNS_ALLOWED_DIRS": "/root/"
       }
     },
+    "chat-history-sshfs-dns-srv": {
+      "type": "stdio",
+      "disabled": false,
+      "command": "python",
+      "args": [
+        "-m",
+        "mcp_filesystem_sshfs.chat_history",
+        "--host",
+        "${FS_DNS_HOST}",
+        "--username",
+        "${FS_DNS_USER}",
+        "--key-path",
+        "${FS_DNS_KEY_PATH}",
+        "--profile-storage-path",
+        "${CHAT_DNS_PROFILE_STORAGE_PATH}",
+        "--workspace-storage-root",
+        "${CHAT_DNS_WORKSPACE_STORAGE_ROOT}",
+        "--allowed-dirs",
+        "${CHAT_DNS_ALLOWED_DIRS}"
+      ],
+      "env": {
+        "PYTHONUNBUFFERED": "1",
+        "FS_DNS_HOST": "10.0.0.152",
+        "FS_DNS_USER": "root",
+        "FS_DNS_KEY_PATH": "/root/dotfiles/ssh/id_ed25519",
+        "CHAT_DNS_PROFILE_STORAGE_PATH": "/root/.vscode-server/data/User/globalStorage",
+        "CHAT_DNS_WORKSPACE_STORAGE_ROOT": "/root/.vscode-server/data/User/workspaceStorage",
+        "CHAT_DNS_ALLOWED_DIRS": "/root/.vscode-server/data/User/globalStorage,/root/.vscode-server/data/User/workspaceStorage"
+      }
+    },
     "filesystem-sshfs-vpn-srv": {
       "type": "stdio",
       "disabled": false,
@@ -200,6 +260,36 @@
         "FS_VPN_USER": "root",
         "FS_VPN_KEY_PATH": "/root/dotfiles/ssh/id_ed25519",
         "FS_VPN_ALLOWED_DIRS": "/root/"
+      }
+    },
+    "chat-history-sshfs-vpn-srv": {
+      "type": "stdio",
+      "disabled": false,
+      "command": "python",
+      "args": [
+        "-m",
+        "mcp_filesystem_sshfs.chat_history",
+        "--host",
+        "${FS_VPN_HOST}",
+        "--username",
+        "${FS_VPN_USER}",
+        "--key-path",
+        "${FS_VPN_KEY_PATH}",
+        "--profile-storage-path",
+        "${CHAT_VPN_PROFILE_STORAGE_PATH}",
+        "--workspace-storage-root",
+        "${CHAT_VPN_WORKSPACE_STORAGE_ROOT}",
+        "--allowed-dirs",
+        "${CHAT_VPN_ALLOWED_DIRS}"
+      ],
+      "env": {
+        "PYTHONUNBUFFERED": "1",
+        "FS_VPN_HOST": "10.0.0.7",
+        "FS_VPN_USER": "root",
+        "FS_VPN_KEY_PATH": "/root/dotfiles/ssh/id_ed25519",
+        "CHAT_VPN_PROFILE_STORAGE_PATH": "/root/.vscode-server/data/User/globalStorage",
+        "CHAT_VPN_WORKSPACE_STORAGE_ROOT": "/root/.vscode-server/data/User/workspaceStorage",
+        "CHAT_VPN_ALLOWED_DIRS": "/root/.vscode-server/data/User/globalStorage,/root/.vscode-server/data/User/workspaceStorage"
       }
     },
     "filesystem-sshfs-oidc-srv": {
@@ -250,6 +340,36 @@
         "FS_EDIACARIAN_ALLOWED_DIRS": "/home/ubuntu/"
       }
     },
+    "chat-history-sshfs-oidc-srv": {
+      "type": "stdio",
+      "disabled": false,
+      "command": "python",
+      "args": [
+        "-m",
+        "mcp_filesystem_sshfs.chat_history",
+        "--host",
+        "${FS_OIDC_HOST}",
+        "--username",
+        "${FS_OIDC_USER}",
+        "--key-path",
+        "${FS_OIDC_KEY_PATH}",
+        "--profile-storage-path",
+        "${CHAT_OIDC_PROFILE_STORAGE_PATH}",
+        "--workspace-storage-root",
+        "${CHAT_OIDC_WORKSPACE_STORAGE_ROOT}",
+        "--allowed-dirs",
+        "${CHAT_OIDC_ALLOWED_DIRS}"
+      ],
+      "env": {
+        "PYTHONUNBUFFERED": "1",
+        "FS_OIDC_HOST": "10.0.0.226",
+        "FS_OIDC_USER": "root",
+        "FS_OIDC_KEY_PATH": "/root/dotfiles/ssh/id_ed25519",
+        "CHAT_OIDC_PROFILE_STORAGE_PATH": "/root/.vscode-server/data/User/globalStorage",
+        "CHAT_OIDC_WORKSPACE_STORAGE_ROOT": "/root/.vscode-server/data/User/workspaceStorage",
+        "CHAT_OIDC_ALLOWED_DIRS": "/root/.vscode-server/data/User/globalStorage,/root/.vscode-server/data/User/workspaceStorage"
+      }
+    },
     "filesystem-sshfs-mcp-srv": {
       "type": "stdio",
       "disabled": true,
@@ -272,6 +392,36 @@
         "FS_MCP_USER": "root",
         "FS_MCP_KEY_PATH": "/root/dotfiles/ssh/id_ed25519",
         "FS_MCP_ALLOWED_DIRS": "/root"
+      }
+    },
+    "chat-history-sshfs-mcp-srv": {
+      "type": "stdio",
+      "disabled": true,
+      "command": "python",
+      "args": [
+        "-m",
+        "mcp_filesystem_sshfs.chat_history",
+        "--host",
+        "${FS_MCP_HOST}",
+        "--username",
+        "${FS_MCP_USER}",
+        "--key-path",
+        "${FS_MCP_KEY_PATH}",
+        "--profile-storage-path",
+        "${CHAT_MCP_PROFILE_STORAGE_PATH}",
+        "--workspace-storage-root",
+        "${CHAT_MCP_WORKSPACE_STORAGE_ROOT}",
+        "--allowed-dirs",
+        "${CHAT_MCP_ALLOWED_DIRS}"
+      ],
+      "env": {
+        "PYTHONUNBUFFERED": "1",
+        "FS_MCP_HOST": "10.0.0.193",
+        "FS_MCP_USER": "root",
+        "FS_MCP_KEY_PATH": "/root/dotfiles/ssh/id_ed25519",
+        "CHAT_MCP_PROFILE_STORAGE_PATH": "/root/.vscode-server/data/User/globalStorage",
+        "CHAT_MCP_WORKSPACE_STORAGE_ROOT": "/root/.vscode-server/data/User/workspaceStorage",
+        "CHAT_MCP_ALLOWED_DIRS": "/root/.vscode-server/data/User/globalStorage,/root/.vscode-server/data/User/workspaceStorage"
       }
     }
   }
