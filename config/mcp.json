@@ -102,7 +102,7 @@
         "--no-sandbox",
         "--isolated",
         "--executable-path",
-        "/root/.cache/ms-playwright/chromium-1187/chrome-linux/chrome"
+        "/usr/bin/chromium-browser"
       ]
     },
     "tavily": {
@@ -224,6 +224,30 @@
         "FS_OIDC_USER": "root",
         "FS_OIDC_KEY_PATH": "/root/dotfiles/ssh/id_ed25519",
         "FS_OIDC_ALLOWED_DIRS": "/root/"
+      }
+    },
+    "filesystem-sshfs-ediacarian": {
+      "type": "stdio",
+      "disabled": false,
+      "command": "python",
+      "args": [
+        "-m",
+        "mcp_filesystem_sshfs",
+        "--host",
+        "${FS_EDIACARIAN_HOST}",
+        "--username",
+        "${FS_EDIACARIAN_USER}",
+        "--key-path",
+        "${FS_EDIACARIAN_KEY_PATH}",
+        "--allowed-dirs",
+        "${FS_EDIACARIAN_ALLOWED_DIRS}"
+      ],
+      "env": {
+        "PYTHONUNBUFFERED": "1",
+        "FS_EDIACARIAN_HOST": "193.122.204.110",
+        "FS_EDIACARIAN_USER": "ubuntu",
+        "FS_EDIACARIAN_KEY_PATH": "/root/dotfiles/ssh/id_ed25519",
+        "FS_EDIACARIAN_ALLOWED_DIRS": "/home/ubuntu/"
       }
     },
     "filesystem-sshfs-mcp-srv": {

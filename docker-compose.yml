@@ -18,9 +18,8 @@ services:
 
   mcp:
     build:
-      context: ..
-      dockerfile: mcp-srv/Dockerfile
-    image: local/1mcp:py
+      context: .
+      dockerfile: Dockerfile
     container_name: 1mcp
     network_mode: host
     env_file:
@@ -46,10 +45,16 @@ services:
       - FS_OIDC_USER=root
       - FS_OIDC_KEY_PATH=/ssh/id_ed25519
       - FS_OIDC_ALLOWED_DIRS=/root/
+      - FS_EDIACARIAN_HOST=193.122.204.110
+      - FS_EDIACARIAN_USER=ubuntu
+      - FS_EDIACARIAN_KEY_PATH=/ssh/id_ed25519
+      - FS_EDIACARIAN_ALLOWED_DIRS=/home/ubuntu/
       - FS_MCP_HOST=mcp.ediacarian.home
       - FS_MCP_USER=root
       - FS_MCP_KEY_PATH=/ssh/id_ed25519
       - FS_MCP_ALLOWED_DIRS=/root/
+      - PLAYWRIGHT_BROWSERS_PATH=/usr/bin
+      - PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium-browser
     volumes:
       - ./config:/config
       - ./memory:/stores
