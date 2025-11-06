@@ -18,8 +18,10 @@ services:
 
   mcp:
     build:
-      context: .
-      dockerfile: Dockerfile
+      # Expand build context to parent so we can copy the local mcp-filesystem-sshfs
+      # directory into the image during build. The Dockerfile lives in mcp-srv/.
+      context: ..
+      dockerfile: mcp-srv/Dockerfile
     container_name: 1mcp
     network_mode: host
     env_file:
