@@ -31,6 +31,10 @@ services:
       - GITHUB_PERSONAL_ACCESS_TOKEN=${GITHUB_PERSONAL_ACCESS_TOKEN}
       - GITHUB_TOKEN=${GITHUB_TOKEN}
       - GH_TOKEN=${GH_TOKEN}
+      - FS_MSI_HOST=10.0.0.220
+      - FS_MSI_USER=jrs
+      - FS_MSI_KEY_PATH=/ssh/id_ed25519
+      - FS_MSI_ALLOWED_DIRS=/home/jrs
       - FS_PROXMOX_HOST=10.0.0.250
       - FS_PROXMOX_USER=root
       - FS_PROXMOX_KEY_PATH=/ssh/id_ed25519
@@ -57,10 +61,13 @@ services:
       - FS_MCP_ALLOWED_DIRS=/root/
       - PLAYWRIGHT_BROWSERS_PATH=/usr/bin
       - PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium-browser
+      - CHAT_PROXMOX_WORKSPACE_STORAGE_ROOT=/root/.vscode-server/data/User/workspaceStorage
+      - SQLITE_DB_PATH=/var/mcp/sqlite/mcp.db
     volumes:
       - ./config:/config
       - ./memory:/stores
       - /root/dotfiles/ssh:/ssh:ro
+      - ./data/sqlite:/var/mcp/sqlite:rw
     command: ["node", "index.js", "--config-dir", "/config", "--host", "0.0.0.0", "--port", "3050", "--transport", "http", "--external-url", "https://mcp.ediacarian.home", "--trust-proxy", "172.18.0.0/16"]
     labels:
       - "traefik.enable=true"
