@@ -10,7 +10,7 @@
         "PYTHONUNBUFFERED": "1",
         "FS_DNS_HOST": "10.0.0.152",
         "FS_DNS_USER": "root",
-        "FS_DNS_KEY_PATH": "/root/dotfiles/ssh/id_ed25519",
+      "FS_DNS_KEY_PATH": "/ssh/id_ed25519",
         "FS_DNS_ALLOWED_DIRS": "/root/"
       },
       "type": "stdio",
@@ -75,7 +75,7 @@
     },
     "pandoc": {
       "type": "stdio",
-      "disabled": false,
+      "disabled": true,
       "command": "npx",
       "args": [
         "-y",
@@ -130,10 +130,39 @@
       }
     }
     ,
-    "filesystem-sshfs-proxmox": {
+    "triliumnext-md-srv": {
       "type": "stdio",
       "disabled": false,
-      "command": "python",
+      "command": "npx",
+      "args": [
+        "-y",
+        "triliumnext-mcp"
+      ],
+      "env": {
+        "TRILIUM_API_URL": "https://md.ediacarian.home/etapi",
+        "TRILIUM_API_TOKEN": "***REMOVED***",
+        "PERMISSIONS": "READ;WRITE",
+        "NODE_EXTRA_CA_CERTS": "/certs/ca.crt"
+      }
+    }
+    ,
+    "filesystem-sshfs-multi": {
+      "type": "stdio",
+      "disabled": false,
+      "command": "python3",
+      "args": [
+  "-c",
+  "import sys, runpy; sys.argv=['mcp_filesystem_sshfs.multi_backend','--connectors','/config/filesystem-connectors.json']; runpy.run_module('mcp_filesystem_sshfs.multi_backend', run_name='__main__')"
+      ],
+      "env": {
+        "PYTHONUNBUFFERED": "1"
+      }
+    }
+    ,
+    "filesystem-sshfs-proxmox": {
+      "type": "stdio",
+      "disabled": true,
+      "command": "python3",
       "args": [
         "-m",
         "mcp_filesystem_sshfs",
@@ -150,14 +179,14 @@
         "PYTHONUNBUFFERED": "1",
         "FS_PROXMOX_HOST": "10.0.0.250",
         "FS_PROXMOX_USER": "root",
-        "FS_PROXMOX_KEY_PATH": "/root/dotfiles/ssh/id_ed25519",
+      "FS_PROXMOX_KEY_PATH": "/ssh/id_ed25519",
         "FS_PROXMOX_ALLOWED_DIRS": "/root/"
       }
     },
     "chat-history-sshfs-proxmox": {
       "type": "stdio",
-      "disabled": false,
-      "command": "python",
+      "disabled": true,
+      "command": "python3",
       "args": [
         "-m",
         "mcp_filesystem_sshfs.chat_history",
@@ -178,7 +207,7 @@
         "PYTHONUNBUFFERED": "1",
         "FS_PROXMOX_HOST": "10.0.0.250",
         "FS_PROXMOX_USER": "root",
-        "FS_PROXMOX_KEY_PATH": "/root/dotfiles/ssh/id_ed25519",
+        "FS_PROXMOX_KEY_PATH": "/ssh/id_ed25519",
         "CHAT_PROXMOX_PROFILE_STORAGE_PATH": "/root/.vscode-server/data/User/globalStorage",
         "CHAT_PROXMOX_WORKSPACE_STORAGE_ROOT": "/root/.vscode-server/data/User/workspaceStorage",
         "CHAT_PROXMOX_ALLOWED_DIRS": "/root/.vscode-server/data/User/globalStorage,/root/.vscode-server/data/User/workspaceStorage"
@@ -186,8 +215,8 @@
     },
     "filesystem-sshfs-dns-srv": {
       "type": "stdio",
-      "disabled": false,
-      "command": "python",
+      "disabled": true,
+      "command": "python3",
       "args": [
         "-m",
         "mcp_filesystem_sshfs",
@@ -204,14 +233,14 @@
         "PYTHONUNBUFFERED": "1",
         "FS_DNS_HOST": "10.0.0.152",
         "FS_DNS_USER": "root",
-        "FS_DNS_KEY_PATH": "/root/dotfiles/ssh/id_ed25519",
+        "FS_DNS_KEY_PATH": "/ssh/id_ed25519",
         "FS_DNS_ALLOWED_DIRS": "/root/"
       }
     },
     "chat-history-sshfs-dns-srv": {
       "type": "stdio",
-      "disabled": false,
-      "command": "python",
+      "disabled": true,
+      "command": "python3",
       "args": [
         "-m",
         "mcp_filesystem_sshfs.chat_history",
@@ -232,7 +261,7 @@
         "PYTHONUNBUFFERED": "1",
         "FS_DNS_HOST": "10.0.0.152",
         "FS_DNS_USER": "root",
-        "FS_DNS_KEY_PATH": "/root/dotfiles/ssh/id_ed25519",
+  "FS_DNS_KEY_PATH": "/ssh/id_ed25519",
         "CHAT_DNS_PROFILE_STORAGE_PATH": "/root/.vscode-server/data/User/globalStorage",
         "CHAT_DNS_WORKSPACE_STORAGE_ROOT": "/root/.vscode-server/data/User/workspaceStorage",
         "CHAT_DNS_ALLOWED_DIRS": "/root/.vscode-server/data/User/globalStorage,/root/.vscode-server/data/User/workspaceStorage"
@@ -240,8 +269,8 @@
     },
     "filesystem-sshfs-vpn-srv": {
       "type": "stdio",
-      "disabled": false,
-      "command": "python",
+      "disabled": true,
+      "command": "python3",
       "args": [
         "-m",
         "mcp_filesystem_sshfs",
@@ -258,14 +287,14 @@
         "PYTHONUNBUFFERED": "1",
         "FS_VPN_HOST": "10.0.0.7",
         "FS_VPN_USER": "root",
-        "FS_VPN_KEY_PATH": "/root/dotfiles/ssh/id_ed25519",
+      "FS_VPN_KEY_PATH": "/ssh/id_ed25519",
         "FS_VPN_ALLOWED_DIRS": "/root/"
       }
     },
     "chat-history-sshfs-vpn-srv": {
       "type": "stdio",
-      "disabled": false,
-      "command": "python",
+      "disabled": true,
+      "command": "python3",
       "args": [
         "-m",
         "mcp_filesystem_sshfs.chat_history",
@@ -286,7 +315,7 @@
         "PYTHONUNBUFFERED": "1",
         "FS_VPN_HOST": "10.0.0.7",
         "FS_VPN_USER": "root",
-        "FS_VPN_KEY_PATH": "/root/dotfiles/ssh/id_ed25519",
+  "FS_VPN_KEY_PATH": "/ssh/id_ed25519",
         "CHAT_VPN_PROFILE_STORAGE_PATH": "/root/.vscode-server/data/User/globalStorage",
         "CHAT_VPN_WORKSPACE_STORAGE_ROOT": "/root/.vscode-server/data/User/workspaceStorage",
         "CHAT_VPN_ALLOWED_DIRS": "/root/.vscode-server/data/User/globalStorage,/root/.vscode-server/data/User/workspaceStorage"
@@ -294,8 +323,8 @@
     },
     "filesystem-sshfs-oidc-srv": {
       "type": "stdio",
-      "disabled": false,
-      "command": "python",
+      "disabled": true,
+      "command": "python3",
       "args": [
         "-m",
         "mcp_filesystem_sshfs",
@@ -312,14 +341,14 @@
         "PYTHONUNBUFFERED": "1",
         "FS_OIDC_HOST": "10.0.0.226",
         "FS_OIDC_USER": "root",
-        "FS_OIDC_KEY_PATH": "/root/dotfiles/ssh/id_ed25519",
+      "FS_OIDC_KEY_PATH": "/ssh/id_ed25519",
         "FS_OIDC_ALLOWED_DIRS": "/root/"
       }
     },
     "filesystem-sshfs-ediacarian": {
       "type": "stdio",
-      "disabled": false,
-      "command": "python",
+      "disabled": true,
+      "command": "python3",
       "args": [
         "-m",
         "mcp_filesystem_sshfs",
@@ -336,14 +365,14 @@
         "PYTHONUNBUFFERED": "1",
         "FS_EDIACARIAN_HOST": "193.122.204.110",
         "FS_EDIACARIAN_USER": "ubuntu",
-        "FS_EDIACARIAN_KEY_PATH": "/root/dotfiles/ssh/id_ed25519",
+      "FS_EDIACARIAN_KEY_PATH": "/ssh/id_ed25519",
         "FS_EDIACARIAN_ALLOWED_DIRS": "/home/ubuntu/"
       }
     },
     "chat-history-sshfs-oidc-srv": {
       "type": "stdio",
-      "disabled": false,
-      "command": "python",
+      "disabled": true,
+      "command": "python3",
       "args": [
         "-m",
         "mcp_filesystem_sshfs.chat_history",
@@ -364,7 +393,7 @@
         "PYTHONUNBUFFERED": "1",
         "FS_OIDC_HOST": "10.0.0.226",
         "FS_OIDC_USER": "root",
-        "FS_OIDC_KEY_PATH": "/root/dotfiles/ssh/id_ed25519",
+        "FS_OIDC_KEY_PATH": "/ssh/id_ed25519",
         "CHAT_OIDC_PROFILE_STORAGE_PATH": "/root/.vscode-server/data/User/globalStorage",
         "CHAT_OIDC_WORKSPACE_STORAGE_ROOT": "/root/.vscode-server/data/User/workspaceStorage",
         "CHAT_OIDC_ALLOWED_DIRS": "/root/.vscode-server/data/User/globalStorage,/root/.vscode-server/data/User/workspaceStorage"
@@ -373,7 +402,7 @@
     "filesystem-sshfs-mcp-srv": {
       "type": "stdio",
       "disabled": true,
-      "command": "python",
+      "command": "python3",
       "args": [
         "-m",
         "mcp_filesystem_sshfs",
@@ -390,14 +419,14 @@
         "PYTHONUNBUFFERED": "1",
         "FS_MCP_HOST": "10.0.0.193",
         "FS_MCP_USER": "root",
-        "FS_MCP_KEY_PATH": "/root/dotfiles/ssh/id_ed25519",
+      "FS_MCP_KEY_PATH": "/ssh/id_ed25519",
         "FS_MCP_ALLOWED_DIRS": "/root"
       }
     },
     "chat-history-sshfs-mcp-srv": {
       "type": "stdio",
       "disabled": true,
-      "command": "python",
+      "command": "python3",
       "args": [
         "-m",
         "mcp_filesystem_sshfs.chat_history",
@@ -418,10 +447,64 @@
         "PYTHONUNBUFFERED": "1",
         "FS_MCP_HOST": "10.0.0.193",
         "FS_MCP_USER": "root",
-        "FS_MCP_KEY_PATH": "/root/dotfiles/ssh/id_ed25519",
+  "FS_MCP_KEY_PATH": "/ssh/id_ed25519",
         "CHAT_MCP_PROFILE_STORAGE_PATH": "/root/.vscode-server/data/User/globalStorage",
         "CHAT_MCP_WORKSPACE_STORAGE_ROOT": "/root/.vscode-server/data/User/workspaceStorage",
         "CHAT_MCP_ALLOWED_DIRS": "/root/.vscode-server/data/User/globalStorage,/root/.vscode-server/data/User/workspaceStorage"
+      }
+    },
+    "filesystem-sshfs-msi": {
+      "type": "stdio",
+      "disabled": true,
+      "command": "python3",
+      "args": [
+        "-m",
+        "mcp_filesystem_sshfs",
+        "--host",
+        "${FS_MSI_HOST}",
+        "--username",
+        "${FS_MSI_USER}",
+        "--key-path",
+        "${FS_MSI_KEY_PATH}",
+        "--allowed-dirs",
+        "${FS_MSI_ALLOWED_DIRS}"
+      ],
+      "env": {
+        "PYTHONUNBUFFERED": "1",
+        "FS_MSI_HOST": "10.0.0.220",
+        "FS_MSI_USER": "jrs",
+      "FS_MSI_KEY_PATH": "/ssh/id_ed25519",
+        "FS_MSI_ALLOWED_DIRS": "/home/jrs/"
+      }
+    },
+    "chat-history-sshfs-msi": {
+      "type": "stdio",
+      "disabled": true,
+      "command": "python3",
+      "args": [
+        "-m",
+        "mcp_filesystem_sshfs.chat_history",
+        "--host",
+        "${FS_MSI_HOST}",
+        "--username",
+        "${FS_MSI_USER}",
+  "--key-path",
+  "${FS_MSI_KEY_PATH}",
+  "--profile-storage-path",
+  "${CHAT_MSI_PROFILE_STORAGE_PATH}",
+  "--workspace-storage-root",
+  "${CHAT_MSI_WORKSPACE_STORAGE_ROOT}",
+  "--allowed-dirs",
+  "${CHAT_MSI_ALLOWED_DIRS}"
+      ],
+      "env": {
+        "PYTHONUNBUFFERED": "1",
+        "FS_MSI_HOST": "10.0.0.220",
+        "FS_MSI_USER": "jrs",
+        "FS_MSI_KEY_PATH": "/ssh/id_ed25519",
+        "CHAT_MSI_PROFILE_STORAGE_PATH": "/home/jrs/.specstory/history",
+        "CHAT_MSI_WORKSPACE_STORAGE_ROOT": "/home/jrs/.config/Code/User/workspaceStorage",
+        "CHAT_MSI_ALLOWED_DIRS": "/home/jrs/.specstory/history,/home/jrs/.config/Code/User/workspaceStorage"
       }
     }
   }
