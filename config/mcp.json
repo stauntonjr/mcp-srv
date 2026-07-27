@@ -94,15 +94,9 @@
     "playwright": {
       "type": "stdio",
       "disabled": false,
-      "command": "npx",
+      "command": "python3",
       "args": [
-        "-y",
-        "@playwright/mcp@latest",
-        "--headless",
-        "--no-sandbox",
-        "--isolated",
-        "--executable-path",
-        "/usr/bin/chromium-browser"
+        "/config/scripts/playwright-schema-compat.py"
       ]
     },
     "tavily": {
