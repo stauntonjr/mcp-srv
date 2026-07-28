@@ -1,0 +1,158 @@
+{
+  "stores": [
+    {
+      "id": "msi",
+      "label": "MSI (jrs)",
+      "host": "10.0.0.220",
+      "username": "jrs",
+      "port": 22,
+      "key_path": "/ssh/id_ed25519",
+      "allowed_dirs": ["/home/jrs/", "/home/jrs/.specstory/history", "/home/jrs/.config/Code/User/workspaceStorage"],
+      "profile_storage_path": "/home/jrs/.specstory/history",
+      "workspace_storage_root": "/home/jrs/.config/Code/User/workspaceStorage"
+    },
+    {
+      "id": "dns",
+      "label": "DNS Server (root)",
+      "host": "10.0.0.152",
+      "username": "root",
+      "port": 22,
+      "key_path": "/ssh/id_ed25519",
+      "allowed_dirs": ["/root/", "/root/.specstory/history"],
+      "profile_storage_path": "/root/.specstory/history",
+      "workspace_storage_root": "/root/.config/Code/User/workspaceStorage"
+    },
+    {
+      "id": "proxmox",
+      "label": "Proxmox (root)",
+      "host": "10.0.0.250",
+      "username": "root",
+      "port": 22,
+      "key_path": "/ssh/id_ed25519",
+      "allowed_dirs": ["/root/", "/root/.specstory/history"],
+      "profile_storage_path": "/root/.specstory/history",
+      "workspace_storage_root": "/root/.config/Code/User/workspaceStorage"
+    },
+    {
+      "id": "docker-lxc",
+      "label": "docker-lxc (root)",
+      "host": "10.0.0.95",
+      "username": "root",
+      "port": 22,
+      "key_path": "/ssh/id_ed25519",
+      "allowed_dirs": ["/root/", "/root/.specstory/history"],
+      "profile_storage_path": "/root/.specstory/history",
+      "workspace_storage_root": "/root/.config/Code/User/workspaceStorage"
+    },
+    {
+      "id": "mcp-srv",
+      "label": "mcp-srv (root)",
+      "host": "10.0.0.193",
+      "username": "root",
+      "port": 22,
+      "key_path": "/ssh/id_ed25519",
+      "allowed_dirs": ["/root/", "/root/.specstory/history"],
+      "profile_storage_path": "/root/.specstory/history",
+      "workspace_storage_root": "/root/.config/Code/User/workspaceStorage"
+    },
+    {
+      "id": "vpn-srv",
+      "label": "vpn-srv (root)",
+      "host": "10.0.0.7",
+      "username": "root",
+      "port": 22,
+      "key_path": "/ssh/id_ed25519",
+      "allowed_dirs": ["/root/", "/root/.specstory/history"],
+      "profile_storage_path": "/root/.specstory/history",
+      "workspace_storage_root": "/root/.config/Code/User/workspaceStorage"
+    },
+    {
+      "id": "oidc-srv",
+      "label": "oidc-srv (root)",
+      "host": "10.0.0.226",
+      "username": "root",
+      "port": 22,
+      "key_path": "/ssh/id_ed25519",
+      "allowed_dirs": ["/root/", "/root/.specstory/history"],
+      "profile_storage_path": "/root/.specstory/history",
+      "workspace_storage_root": "/root/.config/Code/User/workspaceStorage"
+    },
+    {
+      "id": "sh-srv",
+      "label": "sh-srv (root)",
+      "host": "10.0.0.119",
+      "username": "root",
+      "port": 22,
+      "key_path": "/ssh/id_ed25519",
+      "allowed_dirs": ["/root/", "/root/.specstory/history"],
+      "profile_storage_path": "/root/.specstory/history",
+      "workspace_storage_root": "/root/.config/Code/User/workspaceStorage"
+    },
+    {
+      "id": "md-srv",
+      "label": "md-srv (root)",
+      "host": "10.0.0.61",
+      "username": "root",
+      "port": 22,
+      "key_path": "/ssh/id_ed25519",
+      "allowed_dirs": ["/root/", "/root/.specstory/history"],
+      "profile_storage_path": "/root/.specstory/history",
+      "workspace_storage_root": "/root/.config/Code/User/workspaceStorage"
+    },
+    {
+      "id": "log-srv",
+      "label": "log-srv (root)",
+      "host": "10.0.0.28",
+      "username": "root",
+      "port": 22,
+      "key_path": "/ssh/id_ed25519",
+      "allowed_dirs": ["/root/", "/root/.specstory/history"],
+      "profile_storage_path": "/root/.specstory/history",
+      "workspace_storage_root": "/root/.config/Code/User/workspaceStorage"
+    },
+    {
+      "id": "ediacarian",
+      "label": "ediacarian (ubuntu)",
+      "host": "193.122.204.110",
+      "username": "ubuntu",
+      "port": 22,
+      "key_path": "/ssh/id_ed25519",
+      "allowed_dirs": ["/home/ubuntu/", "/home/ubuntu/.specstory/history"],
+      "profile_storage_path": "/home/ubuntu/.specstory/history",
+      "workspace_storage_root": "/home/ubuntu/.config/Code/User/workspaceStorage"
+    },
+    {
+      "id": "win-desktop",
+      "label": "win-desktop (User)",
+      "host": "10.0.0.204",
+      "username": "User",
+      "port": 22,
+      "key_path": "/ssh/id_ed25519",
+      "allowed_dirs": ["/home/User/", "/home/User/.specstory/history"],
+      "profile_storage_path": "/home/User/.specstory/history",
+      "workspace_storage_root": "/home/User/.config/Code/User/workspaceStorage"
+    },
+    {
+      "id": "wsl-desktop",
+      "label": "wsl-desktop (jrs)",
+      "host": "10.0.0.204",
+      "username": "jrs",
+      "port": 2222,
+      "key_path": "/ssh/id_ed25519",
+      "allowed_dirs": ["/home/jrs/", "/home/jrs/.specstory/history"],
+      "profile_storage_path": "/home/jrs/.specstory/history",
+      "workspace_storage_root": "/home/jrs/.config/Code/User/workspaceStorage"
+    },
+    {
+      "id": "wsl-desktop-local",
+      "label": "wsl-desktop-local (jrs)",
+      "host": "localhost",
+      "username": "jrs",
+      "port": 22,
+      "key_path": "/ssh/id_ed25519",
+      "allowed_dirs": ["/home/jrs/", "/home/jrs/.specstory/history"],
+      "profile_storage_path": "/home/jrs/.specstory/history",
+      "workspace_storage_root": "/home/jrs/.config/Code/User/workspaceStorage"
+    }
+  ]
+}

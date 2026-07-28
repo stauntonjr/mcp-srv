@@ -1,13 +1,8 @@
 #!/usr/bin/env python3
 """Compatibility proxy for Playwright MCP tool schemas.
 
-VS Code's MCP client in this environment rejects Playwright tool schemas that
-declare JSON Schema draft 2020-12. This proxy launches the real Playwright MCP
-server, forwards stdio JSON-RPC traffic unchanged, and strips the top-level
-`$schema` declaration from tool definitions before they reach the client.
-
-That keeps the tool parameter shapes intact while avoiding the unsupported
-meta-schema path in the client validator.
+This copy lives under /config so the 1mcp container can execute it from the
+bind-mounted config volume.
 """
 
 from __future__ import annotations
@@ -17,7 +12,7 @@ import os
 import subprocess
 import sys
 import threading
-from typing import Any, BinaryIO, Tuple
+from typing import Any, BinaryIO, Optional, Tuple
 
 
 PLAYWRIGHT_CMD = [
@@ -44,7 +39,14 @@ def strip_schema_fields(value: Any) -> Any:
     return value
 
 
-def read_frame(stream: BinaryIO) -> Tuple[bytes, dict[str, str]]:
+def read_line_message(stream: BinaryIO) -> Tuple[bytes, dict[str, str]]:
+    line = stream.readline()
+    if not line:
+        return b"", {}
+    return line.rstrip(b"\r\n"), {}
+
+
+def read_framed_message(stream: BinaryIO) -> Tuple[bytes, dict[str, str]]:
     headers: dict[str, str] = {}
     header_bytes = bytearray()
 
@@ -68,19 +70,41 @@ def read_frame(stream: BinaryIO) -> Tuple[bytes, dict[str, str]]:
     return body, headers
 
 
-def write_frame(stream: BinaryIO, body: bytes) -> None:
-    stream.write(f"Content-Length: {len(body)}\r\n\r\n".encode("utf-8"))
+def read_message(stream: BinaryIO, mode: Optional[str]) -> Tuple[bytes, dict[str, str], Optional[str]]:
+    if mode == "framed":
+        body, headers = read_framed_message(stream)
+        return body, headers, mode
+    if mode == "line":
+        body, headers = read_line_message(stream)
+        return body, headers, mode
+
+    peek = stream.peek(16) if hasattr(stream, "peek") else b""
+    if peek.startswith(b"Content-Length:"):
+        body, headers = read_framed_message(stream)
+        return body, headers, "framed"
+    body, headers = read_line_message(stream)
+    return body, headers, "line"
+
+
+def write_message(stream: BinaryIO, body: bytes, mode: str) -> None:
+    if mode == "framed":
+        stream.write(f"Content-Length: {len(body)}\r\n\r\n".encode("utf-8"))
+    else:
+        stream.write(b"")
     stream.write(body)
+    if mode == "line":
+        stream.write(b"\n")
     stream.flush()
 
 
 def pump_stdin(proc: subprocess.Popen[bytes]) -> None:
+    mode: Optional[str] = None
     try:
         while True:
-            body, _headers = read_frame(sys.stdin.buffer)
-            if not body and not _headers:
+            body, headers, mode = read_message(sys.stdin.buffer, mode)
+            if not body and not headers:
                 break
-            write_frame(proc.stdin, body)
+            write_message(proc.stdin, body, mode or "line")
     except BrokenPipeError:
         pass
     finally:
@@ -91,16 +115,17 @@ def pump_stdin(proc: subprocess.Popen[bytes]) -> None:
 
 
 def pump_stdout(proc: subprocess.Popen[bytes]) -> None:
+    mode: Optional[str] = None
     try:
         while True:
-            body, headers = read_frame(proc.stdout)
+            body, headers, mode = read_message(proc.stdout, mode)
             if not body and not headers:
                 break
 
             try:
                 message = json.loads(body.decode("utf-8"))
             except json.JSONDecodeError:
-                write_frame(sys.stdout.buffer, body)
+                write_message(sys.stdout.buffer, body, mode or "line")
                 continue
 
             result = message.get("result")
@@ -108,7 +133,7 @@ def pump_stdout(proc: subprocess.Popen[bytes]) -> None:
                 result["tools"] = [strip_schema_fields(tool) for tool in result["tools"]]
 
             encoded = json.dumps(message, separators=(",", ":")).encode("utf-8")
-            write_frame(sys.stdout.buffer, encoded)
+            write_message(sys.stdout.buffer, encoded, mode or "line")
     finally:
         try:
             proc.stdout.close()

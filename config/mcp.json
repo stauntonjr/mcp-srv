@@ -6,20 +6,9 @@
       "url": "https://learn.microsoft.com/api/mcp"
     },
     "github": {      
-      "env": {
-        "PYTHONUNBUFFERED": "1",
-        "FS_DNS_HOST": "10.0.0.152",
-        "FS_DNS_USER": "root",
-      "FS_DNS_KEY_PATH": "/ssh/id_ed25519",
-        "FS_DNS_ALLOWED_DIRS": "/root/"
-      },
-      "type": "stdio",
+      "type": "http",
       "disabled": false,
-      "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-github"
-      ],
+      "url": "https://api.githubcopilot.com/mcp/",
       "headers": {
         "Authorization": "Bearer ${GITHUB_PERSONAL_ACCESS_TOKEN}"
       }

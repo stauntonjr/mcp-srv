@@ -17,3 +17,8 @@ COPY mcp-filesystem-sshfs /opt/mcp-filesystem-sshfs
 # Allow installing into an externally-managed system Python inside the image.
 # This mirrors the manual install we did at runtime with --break-system-packages.
 RUN python3 -m pip install --no-cache-dir --break-system-packages /opt/mcp-filesystem-sshfs
+
+# Install sqlite and dev headers (Alpine/apk)
+RUN apk update \
+    && apk add --no-cache sqlite sqlite-dev \
+ && rm -rf /var/lib/apt/lists/*

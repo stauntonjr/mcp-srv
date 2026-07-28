@@ -8,6 +8,7 @@ Traefik + 1mcp stack for LAN-accessible MCP servers.
 
 ## Secrets
 - Provide GITHUB_PERSONAL_ACCESS_TOKEN via .env (see .env.example).
+- Provide TRILIUM_API_TOKEN via .env for the TriliumNext MCP server (recommended to keep tokens out of `config/mcp.json`).
 - TLS certs/keys are excluded from VCS.
 
 ## Run
