@@ -15,7 +15,6 @@ services:
       - ./traefik/traefik.yml:/etc/traefik/dynamic/traefik.yml:ro
       - /root/dotfiles/ssl:/certs:ro
     restart: unless-stopped
-
   mcp:
     build:
       # Expand build context to parent so we can copy the local mcp-filesystem-sshfs
@@ -67,8 +66,9 @@ services:
       - ./config:/config
       - ./memory:/stores
       - /root/dotfiles/ssh:/ssh:ro
+      - /root/dotfiles/ssl:/certs:ro
       - ./data/sqlite:/var/mcp/sqlite:rw
-    command: ["node", "index.js", "--config-dir", "/config", "--host", "0.0.0.0", "--port", "3050", "--transport", "http", "--external-url", "https://mcp.ediacarian.home", "--trust-proxy", "172.18.0.0/16"]
+    command: ["node", "index.js", "--config-dir", "/config", "--host", "0.0.0.0", "--port", "3050", "--transport", "http", "--external-url", "https://mcp.ediacarian.home", "--trust-proxy", "172.18.0.0/16", "--enable-async-loading"]
     labels:
       - "traefik.enable=true"
     restart: unless-stopped
