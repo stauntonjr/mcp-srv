@@ -9,8 +9,10 @@
       "type": "http",
       "disabled": false,
       "url": "https://api.githubcopilot.com/mcp/",
-      "headers": {
-        "Authorization": "Bearer ${GITHUB_PERSONAL_ACCESS_TOKEN}"
+      "requestInit": {
+        "headers": {
+          "Authorization": "Bearer ${GITHUB_PERSONAL_ACCESS_TOKEN}"
+        }
       }
     },
     "context7": {
@@ -73,7 +75,7 @@
     },
     "puppeteer": {
       "type": "stdio",
-      "disabled": false,
+      "disabled": true,
       "command": "npx",
       "args": [
         "-y",
