@@ -1,0 +1,26 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest"
+      ]
+    },
+    "crawl4ai": {
+      "type": "sse",
+      "url": "http://localhost:11235/mcp/sse"
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/liaoyijun/Documents"
+      ]
+    },
+    "streamable-mcp-server": {
+      "type": "streamable-http",
+      "url": "http://127.0.0.1:12306/mcp"
+    }
+  }
+} 
