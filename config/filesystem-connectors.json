@@ -153,6 +153,17 @@
       "allowed_dirs": ["${FS_WSL_LOCAL_ALLOWED_DIRS}"],
       "profile_storage_path": "${FS_WSL_LOCAL_PROFILE_STORAGE_PATH}",
       "workspace_storage_root": "${FS_WSL_LOCAL_WORKSPACE_STORAGE_ROOT}"
+    },
+    {
+      "id": "spark-3a8f",
+      "label": "DGX Spark (user)",
+      "host": "${FS_DGX_HOST}",
+      "username": "${FS_DGX_USER}",
+      "port": 22,
+      "key_path": "/ssh/id_ed25519",
+      "allowed_dirs": ["${FS_DGX_ALLOWED_DIRS}"],
+      "profile_storage_path": "${FS_DGX_PROFILE_STORAGE_PATH}",
+      "workspace_storage_root": "${FS_DGX_WORKSPACE_STORAGE_ROOT}"
     }
   ]
 }

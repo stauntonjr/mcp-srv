@@ -15,7 +15,7 @@ ENV CHROME_BIN=/usr/bin/chromium-browser
 ENV CHROME_PATH=/usr/lib/chromium/
 
 # Copy and install the local mcp-filesystem-sshfs package
-COPY mcp-filesystem-sshfs /opt/mcp-filesystem-sshfs
+COPY vendor/mcp-filesystem-sshfs /opt/mcp-filesystem-sshfs
 RUN pip3 install --break-system-packages /opt/mcp-filesystem-sshfs
 
 # Install sqlite and dev headers (Alpine/apk)

@@ -1,0 +1,37 @@
+[project]
+name = "mcp-filesystem-sshfs"
+version = "0.1.0"
+description = "MCP server for filesystem operations over SSH using asyncssh"
+authors = [
+    {name = "MCP Filesystem SSHFS Contributors"}
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=1.3.0",
+    "asyncssh>=2.14.0",
+    "trilium-py>=0.6.3",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.scripts]
+mcp-filesystem-sshfs = "mcp_filesystem_sshfs.server:main"
+mcp-chat-history-sshfs = "mcp_filesystem_sshfs.chat_history.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mcp_filesystem_sshfs"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/README.md",
+]
