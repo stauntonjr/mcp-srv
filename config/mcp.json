@@ -5,7 +5,7 @@
       "disabled": false,
       "url": "https://learn.microsoft.com/api/mcp"
     },
-    "github": {      
+    "github": {
       "type": "http",
       "disabled": false,
       "url": "https://api.githubcopilot.com/mcp/",
@@ -113,8 +113,7 @@
       "env": {
         "TAVILY_API_KEY": "${TAVILY_API_KEY}"
       }
-    }
-    ,
+    },
     "triliumnext-md-srv": {
       "type": "stdio",
       "disabled": false,
@@ -129,21 +128,94 @@
         "PERMISSIONS": "READ;WRITE",
         "NODE_EXTRA_CA_CERTS": "/certs/ca.crt"
       }
-    }
-    ,
+    },
     "filesystem-sshfs-multi": {
       "type": "stdio",
       "disabled": false,
       "command": "python3",
       "args": [
-  "-c",
-  "import sys, runpy; sys.argv=['mcp_filesystem_sshfs.multi_backend','--connectors','/config/filesystem-connectors.json']; runpy.run_module('mcp_filesystem_sshfs.multi_backend', run_name='__main__')"
+        "-c",
+        "import sys, runpy; sys.argv=['mcp_filesystem_sshfs.multi_backend','--connectors','/config/filesystem-connectors.json']; runpy.run_module('mcp_filesystem_sshfs.multi_backend', run_name='__main__')"
       ],
       "env": {
-        "PYTHONUNBUFFERED": "1"
+        "PYTHONUNBUFFERED": "1",
+        "FS_DGX_ALLOWED_DIRS": "${FS_DGX_ALLOWED_DIRS}",
+        "FS_DGX_HOST": "${FS_DGX_HOST}",
+        "FS_DGX_PROFILE_STORAGE_PATH": "${FS_DGX_PROFILE_STORAGE_PATH}",
+        "FS_DGX_USER": "${FS_DGX_USER}",
+        "FS_DGX_WORKSPACE_STORAGE_ROOT": "${FS_DGX_WORKSPACE_STORAGE_ROOT}",
+        "FS_DNS_ALLOWED_DIRS": "${FS_DNS_ALLOWED_DIRS}",
+        "FS_DNS_HOST": "${FS_DNS_HOST}",
+        "FS_DNS_PROFILE_STORAGE_PATH": "${FS_DNS_PROFILE_STORAGE_PATH}",
+        "FS_DNS_USER": "${FS_DNS_USER}",
+        "FS_DNS_WORKSPACE_STORAGE_ROOT": "${FS_DNS_WORKSPACE_STORAGE_ROOT}",
+        "FS_EDIACARIAN_ALLOWED_DIRS": "${FS_EDIACARIAN_ALLOWED_DIRS}",
+        "FS_EDIACARIAN_HOST": "${FS_EDIACARIAN_HOST}",
+        "FS_EDIACARIAN_PROFILE_STORAGE_PATH": "${FS_EDIACARIAN_PROFILE_STORAGE_PATH}",
+        "FS_EDIACARIAN_USER": "${FS_EDIACARIAN_USER}",
+        "FS_EDIACARIAN_WORKSPACE_STORAGE_ROOT": "${FS_EDIACARIAN_WORKSPACE_STORAGE_ROOT}",
+        "FS_LOG_ALLOWED_DIRS": "${FS_LOG_ALLOWED_DIRS}",
+        "FS_LOG_HOST": "${FS_LOG_HOST}",
+        "FS_LOG_PROFILE_STORAGE_PATH": "${FS_LOG_PROFILE_STORAGE_PATH}",
+        "FS_LOG_USER": "${FS_LOG_USER}",
+        "FS_LOG_WORKSPACE_STORAGE_ROOT": "${FS_LOG_WORKSPACE_STORAGE_ROOT}",
+        "FS_LXC_ALLOWED_DIRS": "${FS_LXC_ALLOWED_DIRS}",
+        "FS_LXC_HOST": "${FS_LXC_HOST}",
+        "FS_LXC_PROFILE_STORAGE_PATH": "${FS_LXC_PROFILE_STORAGE_PATH}",
+        "FS_LXC_USER": "${FS_LXC_USER}",
+        "FS_LXC_WORKSPACE_STORAGE_ROOT": "${FS_LXC_WORKSPACE_STORAGE_ROOT}",
+        "FS_MCP_ALLOWED_DIRS": "${FS_MCP_ALLOWED_DIRS}",
+        "FS_MCP_HOST": "${FS_MCP_HOST}",
+        "FS_MCP_PROFILE_STORAGE_PATH": "${FS_MCP_PROFILE_STORAGE_PATH}",
+        "FS_MCP_USER": "${FS_MCP_USER}",
+        "FS_MCP_WORKSPACE_STORAGE_ROOT": "${FS_MCP_WORKSPACE_STORAGE_ROOT}",
+        "FS_MD_ALLOWED_DIRS": "${FS_MD_ALLOWED_DIRS}",
+        "FS_MD_HOST": "${FS_MD_HOST}",
+        "FS_MD_PROFILE_STORAGE_PATH": "${FS_MD_PROFILE_STORAGE_PATH}",
+        "FS_MD_USER": "${FS_MD_USER}",
+        "FS_MD_WORKSPACE_STORAGE_ROOT": "${FS_MD_WORKSPACE_STORAGE_ROOT}",
+        "FS_MSI_ALLOWED_DIRS": "${FS_MSI_ALLOWED_DIRS}",
+        "FS_MSI_HOST": "${FS_MSI_HOST}",
+        "FS_MSI_PROFILE_STORAGE_PATH": "${FS_MSI_PROFILE_STORAGE_PATH}",
+        "FS_MSI_USER": "${FS_MSI_USER}",
+        "FS_MSI_WORKSPACE_STORAGE_ROOT": "${FS_MSI_WORKSPACE_STORAGE_ROOT}",
+        "FS_OIDC_ALLOWED_DIRS": "${FS_OIDC_ALLOWED_DIRS}",
+        "FS_OIDC_HOST": "${FS_OIDC_HOST}",
+        "FS_OIDC_PROFILE_STORAGE_PATH": "${FS_OIDC_PROFILE_STORAGE_PATH}",
+        "FS_OIDC_USER": "${FS_OIDC_USER}",
+        "FS_OIDC_WORKSPACE_STORAGE_ROOT": "${FS_OIDC_WORKSPACE_STORAGE_ROOT}",
+        "FS_PROXMOX_ALLOWED_DIRS": "${FS_PROXMOX_ALLOWED_DIRS}",
+        "FS_PROXMOX_HOST": "${FS_PROXMOX_HOST}",
+        "FS_PROXMOX_PROFILE_STORAGE_PATH": "${FS_PROXMOX_PROFILE_STORAGE_PATH}",
+        "FS_PROXMOX_USER": "${FS_PROXMOX_USER}",
+        "FS_PROXMOX_WORKSPACE_STORAGE_ROOT": "${FS_PROXMOX_WORKSPACE_STORAGE_ROOT}",
+        "FS_SH_ALLOWED_DIRS": "${FS_SH_ALLOWED_DIRS}",
+        "FS_SH_HOST": "${FS_SH_HOST}",
+        "FS_SH_PROFILE_STORAGE_PATH": "${FS_SH_PROFILE_STORAGE_PATH}",
+        "FS_SH_USER": "${FS_SH_USER}",
+        "FS_SH_WORKSPACE_STORAGE_ROOT": "${FS_SH_WORKSPACE_STORAGE_ROOT}",
+        "FS_VPN_ALLOWED_DIRS": "${FS_VPN_ALLOWED_DIRS}",
+        "FS_VPN_HOST": "${FS_VPN_HOST}",
+        "FS_VPN_PROFILE_STORAGE_PATH": "${FS_VPN_PROFILE_STORAGE_PATH}",
+        "FS_VPN_USER": "${FS_VPN_USER}",
+        "FS_VPN_WORKSPACE_STORAGE_ROOT": "${FS_VPN_WORKSPACE_STORAGE_ROOT}",
+        "FS_WIN_ALLOWED_DIRS": "${FS_WIN_ALLOWED_DIRS}",
+        "FS_WIN_HOST": "${FS_WIN_HOST}",
+        "FS_WIN_PROFILE_STORAGE_PATH": "${FS_WIN_PROFILE_STORAGE_PATH}",
+        "FS_WIN_USER": "${FS_WIN_USER}",
+        "FS_WIN_WORKSPACE_STORAGE_ROOT": "${FS_WIN_WORKSPACE_STORAGE_ROOT}",
+        "FS_WSL_ALLOWED_DIRS": "${FS_WSL_ALLOWED_DIRS}",
+        "FS_WSL_HOST": "${FS_WSL_HOST}",
+        "FS_WSL_LOCAL_ALLOWED_DIRS": "${FS_WSL_LOCAL_ALLOWED_DIRS}",
+        "FS_WSL_LOCAL_HOST": "${FS_WSL_LOCAL_HOST}",
+        "FS_WSL_LOCAL_PROFILE_STORAGE_PATH": "${FS_WSL_LOCAL_PROFILE_STORAGE_PATH}",
+        "FS_WSL_LOCAL_USER": "${FS_WSL_LOCAL_USER}",
+        "FS_WSL_LOCAL_WORKSPACE_STORAGE_ROOT": "${FS_WSL_LOCAL_WORKSPACE_STORAGE_ROOT}",
+        "FS_WSL_PROFILE_STORAGE_PATH": "${FS_WSL_PROFILE_STORAGE_PATH}",
+        "FS_WSL_USER": "${FS_WSL_USER}",
+        "FS_WSL_WORKSPACE_STORAGE_ROOT": "${FS_WSL_WORKSPACE_STORAGE_ROOT}"
       }
-    }
-    ,
+    },
     "filesystem-sshfs-proxmox": {
       "type": "stdio",
       "disabled": true,
@@ -164,7 +236,7 @@
         "PYTHONUNBUFFERED": "1",
         "FS_PROXMOX_HOST": "10.0.0.250",
         "FS_PROXMOX_USER": "root",
-      "FS_PROXMOX_KEY_PATH": "/ssh/id_ed25519",
+        "FS_PROXMOX_KEY_PATH": "/ssh/id_ed25519",
         "FS_PROXMOX_ALLOWED_DIRS": "/root/"
       }
     },
@@ -246,7 +318,7 @@
         "PYTHONUNBUFFERED": "1",
         "FS_DNS_HOST": "10.0.0.152",
         "FS_DNS_USER": "root",
-  "FS_DNS_KEY_PATH": "/ssh/id_ed25519",
+        "FS_DNS_KEY_PATH": "/ssh/id_ed25519",
         "CHAT_DNS_PROFILE_STORAGE_PATH": "/root/.vscode-server/data/User/globalStorage",
         "CHAT_DNS_WORKSPACE_STORAGE_ROOT": "/root/.vscode-server/data/User/workspaceStorage",
         "CHAT_DNS_ALLOWED_DIRS": "/root/.vscode-server/data/User/globalStorage,/root/.vscode-server/data/User/workspaceStorage"
@@ -272,7 +344,7 @@
         "PYTHONUNBUFFERED": "1",
         "FS_VPN_HOST": "10.0.0.7",
         "FS_VPN_USER": "root",
-      "FS_VPN_KEY_PATH": "/ssh/id_ed25519",
+        "FS_VPN_KEY_PATH": "/ssh/id_ed25519",
         "FS_VPN_ALLOWED_DIRS": "/root/"
       }
     },
@@ -300,7 +372,7 @@
         "PYTHONUNBUFFERED": "1",
         "FS_VPN_HOST": "10.0.0.7",
         "FS_VPN_USER": "root",
-  "FS_VPN_KEY_PATH": "/ssh/id_ed25519",
+        "FS_VPN_KEY_PATH": "/ssh/id_ed25519",
         "CHAT_VPN_PROFILE_STORAGE_PATH": "/root/.vscode-server/data/User/globalStorage",
         "CHAT_VPN_WORKSPACE_STORAGE_ROOT": "/root/.vscode-server/data/User/workspaceStorage",
         "CHAT_VPN_ALLOWED_DIRS": "/root/.vscode-server/data/User/globalStorage,/root/.vscode-server/data/User/workspaceStorage"
@@ -326,7 +398,7 @@
         "PYTHONUNBUFFERED": "1",
         "FS_OIDC_HOST": "10.0.0.226",
         "FS_OIDC_USER": "root",
-      "FS_OIDC_KEY_PATH": "/ssh/id_ed25519",
+        "FS_OIDC_KEY_PATH": "/ssh/id_ed25519",
         "FS_OIDC_ALLOWED_DIRS": "/root/"
       }
     },
@@ -350,7 +422,7 @@
         "PYTHONUNBUFFERED": "1",
         "FS_EDIACARIAN_HOST": "193.122.204.110",
         "FS_EDIACARIAN_USER": "ubuntu",
-      "FS_EDIACARIAN_KEY_PATH": "/ssh/id_ed25519",
+        "FS_EDIACARIAN_KEY_PATH": "/ssh/id_ed25519",
         "FS_EDIACARIAN_ALLOWED_DIRS": "/home/ubuntu/"
       }
     },
@@ -404,7 +476,7 @@
         "PYTHONUNBUFFERED": "1",
         "FS_MCP_HOST": "10.0.0.193",
         "FS_MCP_USER": "root",
-      "FS_MCP_KEY_PATH": "/ssh/id_ed25519",
+        "FS_MCP_KEY_PATH": "/ssh/id_ed25519",
         "FS_MCP_ALLOWED_DIRS": "/root"
       }
     },
@@ -432,7 +504,7 @@
         "PYTHONUNBUFFERED": "1",
         "FS_MCP_HOST": "10.0.0.193",
         "FS_MCP_USER": "root",
-  "FS_MCP_KEY_PATH": "/ssh/id_ed25519",
+        "FS_MCP_KEY_PATH": "/ssh/id_ed25519",
         "CHAT_MCP_PROFILE_STORAGE_PATH": "/root/.vscode-server/data/User/globalStorage",
         "CHAT_MCP_WORKSPACE_STORAGE_ROOT": "/root/.vscode-server/data/User/workspaceStorage",
         "CHAT_MCP_ALLOWED_DIRS": "/root/.vscode-server/data/User/globalStorage,/root/.vscode-server/data/User/workspaceStorage"
@@ -458,7 +530,7 @@
         "PYTHONUNBUFFERED": "1",
         "FS_MSI_HOST": "10.0.0.220",
         "FS_MSI_USER": "jrs",
-      "FS_MSI_KEY_PATH": "/ssh/id_ed25519",
+        "FS_MSI_KEY_PATH": "/ssh/id_ed25519",
         "FS_MSI_ALLOWED_DIRS": "/home/jrs/"
       }
     },
@@ -473,14 +545,14 @@
         "${FS_MSI_HOST}",
         "--username",
         "${FS_MSI_USER}",
-  "--key-path",
-  "${FS_MSI_KEY_PATH}",
-  "--profile-storage-path",
-  "${CHAT_MSI_PROFILE_STORAGE_PATH}",
-  "--workspace-storage-root",
-  "${CHAT_MSI_WORKSPACE_STORAGE_ROOT}",
-  "--allowed-dirs",
-  "${CHAT_MSI_ALLOWED_DIRS}"
+        "--key-path",
+        "${FS_MSI_KEY_PATH}",
+        "--profile-storage-path",
+        "${CHAT_MSI_PROFILE_STORAGE_PATH}",
+        "--workspace-storage-root",
+        "${CHAT_MSI_WORKSPACE_STORAGE_ROOT}",
+        "--allowed-dirs",
+        "${CHAT_MSI_ALLOWED_DIRS}"
       ],
       "env": {
         "PYTHONUNBUFFERED": "1",
