@@ -124,8 +124,8 @@
         "triliumnext-mcp"
       ],
       "env": {
-        "TRILIUM_API_URL": "https://md.ediacarian.home/etapi",
-        "TRILIUM_API_TOKEN": "***REMOVED***",
+        "TRILIUM_API_URL": "${TRILIUM_API_URL}",
+        "TRILIUM_API_TOKEN": "${TRILIUM_API_TOKEN}",
         "PERMISSIONS": "READ;WRITE",
         "NODE_EXTRA_CA_CERTS": "/certs/ca.crt"
       }
